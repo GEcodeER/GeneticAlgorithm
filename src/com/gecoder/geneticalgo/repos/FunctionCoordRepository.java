@@ -12,15 +12,22 @@ public class FunctionCoordRepository extends GeneticAlgoRepository<FunctionCoord
         super(poolSize);
     }
 
+    /** Initialize a random pool of function coordinates (FunctionCoord) */
     public void initialize() {
         IntStream.range(0, super.size).forEach(index -> saveGeneticElement(index, new FunctionCoord().generate()));
     }
+
 
     @Override
     public GeneticAlgoRepository getInstance(int size) {
         return new FunctionCoordRepository(super.size);
     }
 
+    /**
+     * Returns the fittest of the pool comparing the fitness method of the genetic
+     * element class (FunctionCoord)
+     * @return The fittest element of the pool
+     */
     @Override
     public FunctionCoord getFittest() {
         return geneticPool.stream().filter(Objects::nonNull).max(Comparator.comparing(FunctionCoord::getFitness)).orElse(geneticPool.get(0));

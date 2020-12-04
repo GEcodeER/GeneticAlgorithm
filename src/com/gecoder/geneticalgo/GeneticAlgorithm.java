@@ -15,6 +15,13 @@ public class GeneticAlgorithm<T extends GeneticAlgoRepository,
         randomGenerator = new Random();
     }
 
+    /**
+     * The core of the Genetic Algorithm: it evolves the given population into a new
+     * generation of population. This is done by doing corossovers and mutations to the
+     * given population
+     * @param geneticPool The initial population that has to be evolved
+     * @return The new evolved population
+     */
     @SuppressWarnings("unchecked")
     public T evolvePopulation(T geneticPool) {
 
@@ -32,6 +39,12 @@ public class GeneticAlgorithm<T extends GeneticAlgoRepository,
         return evolvedPool;
     }
 
+    /**
+     * Mutates a genetic item based on the probability to get mutated from the
+     * constants field MUTATION_RATE. The mutation is a single bit mutation: bits will
+     * be mutated one by one
+     * @param geneticItem The genetic item to mutate
+     */
     private void mutate(K geneticItem) {
 
         IntStream.range(0, Constants.CHROMOSOME_LENGTH).forEach(geneIndex -> {
@@ -42,6 +55,13 @@ public class GeneticAlgorithm<T extends GeneticAlgoRepository,
 
     }
 
+    /**
+     * Makes a crossover between two genetic elements and giving 'birth' to a new
+     * genetic element using parts of genes from both its 'parents'
+     * @param geneticElement First parent
+     * @param otherGeneticElement Second parent
+     * @return The new-born child
+     */
     @SuppressWarnings("unchecked")
     private K crossOver(K geneticElement, K otherGeneticElement) {
 
@@ -57,6 +77,13 @@ public class GeneticAlgorithm<T extends GeneticAlgoRepository,
         return currentCrossover;
     }
 
+    /**
+     * Randomly select a pool of TOURNAMENT_SIZE (Constants) size and picks the fittest
+     * of them. This is used to have higher probability of making a crossover between
+     * two strong (fit) genes
+     * @param geneticPool The population that is being evolved
+     * @return The fittest of the randomly selected pool
+     */
     @SuppressWarnings("unchecked")
     private K randomSelection(T geneticPool) {
 
