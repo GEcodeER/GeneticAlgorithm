@@ -28,11 +28,15 @@ public class GeneticAlgorithm<T extends GeneticAlgoRepository,
         T evolvedPool = (T) geneticPool.getInstance(geneticPool.size());
 
         IntStream.range(0, geneticPool.size()).forEach(indx -> {
+            //Choosing the parents
             K firstGeneticElem = randomSelection(geneticPool);
             K secondGeneticElem = randomSelection(geneticPool);
+            //New born from the crossover
             K newBorn = crossOver(firstGeneticElem, secondGeneticElem);
 
             evolvedPool.saveGeneticElement(indx, newBorn);
+
+            //Mutating the newborn child just insert
             mutate((K) evolvedPool.getAtIndex(indx));
         });
 

@@ -10,6 +10,13 @@ import java.util.BitSet;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
+/**
+ * Genetic element of a function coordinate. It has a gene (a BitSet) that corresponds to a double value (y-axis) of
+ * an evaluated function. The better the gene the closer it is to a global minimum/maximum.
+ * The fitness of the gene is the one parameter used to compare different genetic elements and pull out th ebest one
+ * of them
+ * @author me
+ */
 public class FunctionCoord extends GeneticAlgoElement<FunctionCoord, Double> {
 
     private BitSet genes;
