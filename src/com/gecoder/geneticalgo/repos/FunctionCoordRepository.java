@@ -2,6 +2,7 @@ package com.gecoder.geneticalgo.repos;
 
 import com.gecoder.geneticalgo.algoelements.FunctionCoord;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.stream.IntStream;
